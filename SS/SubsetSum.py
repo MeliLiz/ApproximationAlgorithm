@@ -27,14 +27,36 @@ def trim(list, delta):
     l1 = [list[0]] # y1 = list[0]
     last = list[0]
     for i in range(1, m):
-        if list[i] > last + delta:
+        if list[i] > last * (1+ delta):
             l1.append(list[i])
             last = list[i]
     return l1
+
+
+# Approximation algorithm for the subset sum problem
+# Takes a set S of n integers in arbitrary order, the target value t, and a parameter epsilon
+def approx_subset_sum(S, n, t, epsilon):
+    l0 = [0]
+    for i in range(1, n+1):
+        print( i, l0)
+        # List adding xi to each element of l0
+        list_added = [x + S[i-1] for x in l0]
+        l1 = merge_lists(l0, list_added)
+        print(l1)
+        l1 = trim(l1, epsilon / (2 * n))
+        print (l1)
+        # Remove every element greater than t
+        l1 = [x for x in l1 if x <= t]
+        print(l1)
+        l0 = l1
+    return l0
+
+
     
 if __name__ == "__main__":
-    list1 = [1, 3, 5]
-    list2 = [2, 4, 6, 8, 10]
+    S = [104, 102, 201, 101]
+    t= 308
+    epsilon = 0.40
     
-    l = trim([1, 3, 5, 7, 9, 11, 13, 15], 3)
-    print (l)
+    r = approx_subset_sum(S, 4, t, epsilon)
+    print(r)
