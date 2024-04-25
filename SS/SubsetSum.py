@@ -49,7 +49,7 @@ def approx_subset_sum(S, n, t, epsilon):
         l1 = [x for x in l1 if x <= t]
         print(l1)
         l0 = l1
-    return l0
+    return l0[len(l0)-1]
 
 
     
@@ -59,4 +59,12 @@ if __name__ == "__main__":
     epsilon = 0.40
     
     r = approx_subset_sum(S, 4, t, epsilon)
+    print(r)
+    
+    S=input("Enter the list of integers (Only numbers separated by commas): ")
+    t = int(input("Enter the target value: "))
+    epsilon = float(input("Enter the epsilon value: "))
+    S = S.split(",")
+    S = [int(x) for x in S]
+    r = approx_subset_sum(S, len(S), t, epsilon)
     print(r)
