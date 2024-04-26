@@ -43,7 +43,8 @@ def approx_subset_sum(S, n, t, epsilon):
         print( i, l0)
         # List adding xi to each element of l0
         for j in keys:
-            if j+S[i] not in keys:
+            val = j + S[i]
+            if val not in keys and val <= t:
                 d=[]
                 d = dic[j].copy()
                 d.append(S[i])
