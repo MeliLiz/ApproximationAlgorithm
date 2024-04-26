@@ -79,6 +79,9 @@ if __name__ == "__main__":
     print("The list of integers is: ", S)
     print("The target value is: ", t)
     print("The epsilon value is: ", epsilon)
-    print("The result is: ", r)
+    print("The result is: ", r[0], " with the elements: ", r[1])
     
-    print(r)
+    if(r[0] == t):
+        print("The target value was reached")
+    else:
+        print("The target value was not reached")
