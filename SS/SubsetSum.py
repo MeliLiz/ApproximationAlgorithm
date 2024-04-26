@@ -37,10 +37,10 @@ def trim(list, delta):
 # Takes a set S of n integers in arbitrary order, the target value t, and a parameter epsilon
 def approx_subset_sum(S, n, t, epsilon):
     l0 = [0]
-    for i in range(1, n+1):
+    for i in range(0, n):
         print( i, l0)
         # List adding xi to each element of l0
-        list_added = [x + S[i-1] for x in l0]
+        list_added = [x + S[i] for x in l0]
         l1 = merge_lists(l0, list_added)
         print(l1)
         l1 = trim(l1, epsilon / (2 * n))
@@ -54,17 +54,17 @@ def approx_subset_sum(S, n, t, epsilon):
 
     
 if __name__ == "__main__":
-    S = [104, 102, 201, 101]
-    t= 308
-    epsilon = 0.40
-    
-    r = approx_subset_sum(S, 4, t, epsilon)
-    print(r)
-    
-    S=input("Enter the list of integers (Only numbers separated by commas): ")
+    S = input("Enter the list of integers (Only numbers separated by commas): ")
     t = int(input("Enter the target value: "))
-    epsilon = float(input("Enter the epsilon value: "))
+    epsilon = float(input("Enter the epsilon value (0 < epsilon < 1): "))
+    if epsilon <= 0 or epsilon >= 1:
+        print("Invalid epsilon value")
+        exit()
     S = S.split(",")
+    # Remove the white spaces from the list
+    S = [x.strip() for x in S]
+    # Remove the [] and {} from the list
+    S = [x.replace("[", "").replace("]", "").replace("{", "").replace("}", "") for x in S]
     S = [int(x) for x in S]
     r = approx_subset_sum(S, len(S), t, epsilon)
     print(r)
