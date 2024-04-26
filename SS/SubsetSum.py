@@ -62,6 +62,14 @@ def approx_subset_sum(S, n, t, epsilon):
 
     
 if __name__ == "__main__":
+    
+    DEFAULT = '\033[0m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    PURPLE = '\033[95m'
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    
     S = input("Enter the list of integers (Only numbers separated by commas): ")
     t = int(input("Enter the target value: "))
     epsilon = float(input("Enter the epsilon value (0 < epsilon < 1): "))
@@ -76,12 +84,12 @@ if __name__ == "__main__":
     S = [int(x) for x in S]
     r = approx_subset_sum(S, len(S), t, epsilon)
     
-    print("The list of integers is: ", S)
+    print("\nThe list of integers is: ", S)
     print("The target value is: ", t)
     print("The epsilon value is: ", epsilon)
-    print("The result is: ", r[0], " with the elements: ", r[1])
+    print("\nThe result is: " + BLUE, r[0], DEFAULT + " with the elements: "+ BLUE, r[1])
     
     if(r[0] == t):
-        print("The target value was reached")
+        print(GREEN + "The target value was reached\n")
     else:
-        print("The target value was not reached")
+        print(YELLOW + "The target value was not reached \n")
