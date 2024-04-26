@@ -37,11 +37,11 @@ def trim(list, delta):
 # Takes a set S of n integers in arbitrary order, the target value t, and a parameter epsilon
 def approx_subset_sum(S, n, t, epsilon):
     l0 = [0]
-    dic ={0:[]}
+    dic ={0:[]} # Dictionary to store the elements added for each number obtained
     keys = list(dic.keys())
     for i in range(0, n):
-        print( i, l0)
-        # List adding xi to each element of l0
+        #print( i, l0)
+        # Register the elements added for the numbers obtained
         for j in keys:
             val = j + S[i]
             if val not in keys and val <= t:
@@ -49,17 +49,17 @@ def approx_subset_sum(S, n, t, epsilon):
                 d = dic[j].copy()
                 d.append(S[i])
                 dic[j+S[i]] = d
-            print("Dic: ",dic)
+            #print("Dic: ",dic)
         keys = list(dic.keys())
-        
+        # List adding xi to each element of l0
         list_added = [x + S[i] for x in l0]
         l1 = merge_lists(l0, list_added)
-        print("Merge: ",l1)
+        #print("Merge: ",l1)
         l1 = trim(l1, epsilon / (2 * n))
-        print ("Trim: ",l1)
+        #print ("Trim: ",l1)
         # Remove every element greater than t
         l1 = [x for x in l1 if x <= t]
-        print("Remove",l1)
+        #print("Remove",l1)
         l0 = l1
     res = l0[len(l0)-1]
     return [res,dic[res]]
